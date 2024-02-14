@@ -1,0 +1,35 @@
+{% extends "layouts/main.html" %}
+
+{% block content %}
+
+<h1 class="text-center">Nuevo artículo</h1>
+
+{% if post is not None %}
+            <input type="hidden" value="{{post.id}}" name="id">
+{% endif %}
+
+<form class="bg-secondary p-3 my-4 rounded" method="POST" action="">
+    {% csrf_token %}
+    <div class="container-fluid">
+        <div class="row d-flex align-items-center d-sm-column d-lg-row">
+            <img src="/static/images/Sword_and_Shield_Rath.webp" class="mx-auto d-block col-lg-4 col-sm-4">
+            <img src="/static/images/Dual_Blades_Render_Narga.webp" class="mx-auto d-block col-lg-4 col-sm-4">
+            <img src="/static/images/Great_Sword_Render_Fatalis.webp" class="mx-auto d-block col-lg-4 col-sm-4">
+        </div>
+    </div>
+    <div class="form-group my-4">
+        <label>Título</label>
+        <input type="text" class="form-control" name="title" placeholder="Title"
+        {% if post is not None %}
+            value="{{post.title}}"
+        {% endif %}
+        >
+    </div>
+    <div class="form-group my-4">
+        <label>Texto</label>
+        <textarea class="form-control" name="text">{% if post is not None%}{{post.text}}{% endif %}</textarea>
+    </div>
+    <button class="btn btn-info" type="submit">Enviar</button>
+</form>
+
+{% endblock %}
